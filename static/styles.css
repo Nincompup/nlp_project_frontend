@@ -1,18 +1,46 @@
 .container {
-    max-width: 1000px;
+    max-width: 1200px;
 }
 
-.table-responsive {
+.cve-details, .analysis-details {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
     margin-top: 20px;
 }
 
-.table th, .table td {
-    vertical-align: middle;
-    text-align: left;
+.cve-details .detail, .analysis-details .detail {
+    margin-bottom: 10px;
 }
 
-.table th {
-    width: 30%;
-    background-color: #f8f9fa;
+.detail strong {
     color: #007bff;
+}
+
+h1, h2 {
+    color: #343a40;
+    font-weight: bold;
+}
+
+input.form-control {
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.detail .reference-links {
+    margin-top: 5px; /* Adds a small gap between the label and the links */
+}
+
+.reference-links div {
+    margin-bottom: 5px; /* Adds space between each link */
+}
+
+.reference-links a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.reference-links a:hover {
+    text-decoration: underline;
 }

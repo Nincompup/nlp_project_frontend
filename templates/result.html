@@ -31,9 +31,11 @@
                 <div class="detail"><strong>Product:</strong> {{ cve["Product"] }}</div>
                 <div class="detail"><strong>Published Date:</strong> {{ cve["Published Date"] }}</div>
                 <div class="detail"><strong>Reference Links:</strong>
-                    {% for link in cve["Reference Links"].split(",") %}
-                        <div><a href="{{ link }}" target="_blank">{{ link }}</a></div>
-                    {% endfor %}
+                    <div class="reference-links">
+                        {% for link in cve["Reference Links"].split(",") %}
+                            <div><a href="{{ link }}" target="_blank">{{ link }}</a></div>
+                        {% endfor %}
+                    </div>
                 </div>
                 <div class="detail"><strong>Related Hardware:</strong> {{ cve["Related Hardware"] }}</div>
                 <div class="detail"><strong>Scope:</strong> {{ cve["Scope"] }}</div>
