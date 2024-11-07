@@ -39,7 +39,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Loop over fields to create table rows
                 fields.forEach(field => {
                     let value = data[field] || "N/A"; // Default to "N/A" if data is missing
-
+                    if(value === "N/A"){
+                        return
+                    }
                     // Special handling for URLs
                     if (field === "Patch URL" && value !== "N/A") {
                         value = `<a href="${value}" target="_blank">${value}</a>`;
