@@ -1,20 +1,20 @@
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("cveForm");
     const resultDiv = document.getElementById("result");
+
     function formatDate(dateStr) {
         if (!dateStr) return "N/A";
         const date = new Date(dateStr);
         return date.toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' });
     }
+
     form.addEventListener("submit", async function (event) {
         event.preventDefault(); // Prevent the form from submitting the traditional way
 
         // Get the CVE ID from the input
         const cveId = document.getElementById("cve_id").value;
-        const apiUrl = `https://cve-extraction.onrender.com/get_cve_info?cve_id=${cveId}`;
+        const apiUrl = https://cve-extraction.onrender.com/get_cve_info?cve_id=${cveId};
 
-       
-        
         // Clear any previous results
         resultDiv.innerHTML = "";
         try {
@@ -45,23 +45,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 cveFields.forEach(field => {
                     let value = data[field.key] || "N/A";
-                         
+
                     if (value === "N/A") return;
                     if (field.isDate) {
                         value = formatDate(value);
-                    }        
+                    }
                     // Special handling for URLs
                     if (field.key === "Reference Links") {
                         value = `<div class="reference-links">${value.split(",").map(link => {
                             const url = link.trim();
                             const displayText = new URL(url).hostname;
-                            return `<div><a href="${url}" target="_blank">${displayText}</a></div>`;
+                            return <div><a href="${url}" target="_blank">${displayText}</a></div>;
                         }).join("")}</div>`;
                     }
-                    cveDetailsHtml += `<div class="detail"><strong>${field.label}:</strong> ${value}</div>`;
+                    cveDetailsHtml += <div class="detail"><strong>${field.label}:</strong> ${value}</div>;
                 });
 
-                cveDetailsHtml += `</div></div>`;
+                cveDetailsHtml += </div></div>;
 
                 // Generate HTML for Advanced Analysis
                 let analysisHtml = `<div class="col-md-6">
@@ -76,24 +76,23 @@ document.addEventListener("DOMContentLoaded", function () {
                     { label: "Mitigation Steps", key: "Mitigation Steps" }
                 ];
 
-                // Access the "Advanced Analysis" section within the JSON data
                 const analysisData = data["Advanced Analysis"] || {};
                 analysisFields.forEach(field => {
                     let value = analysisData[field.key] || "N/A";
                     if (value === "N/A") return;
 
-                    analysisHtml += `<div class="detail"><strong>${field.label}:</strong> ${value}</div>`;
+                    analysisHtml += <div class="detail"><strong>${field.label}:</strong> ${value}</div>;
                 });
 
-                analysisHtml += `</div></div>`;
+                analysisHtml += </div></div>;
 
                 // Display the generated HTML
-                resultDiv.innerHTML = `<div class="row">${cveDetailsHtml}${analysisHtml}</div>`;
+                resultDiv.innerHTML = <div class="row">${cveDetailsHtml}${analysisHtml}</div>;
             } else {
-                resultDiv.innerHTML = `<p class="text-danger">Error: Unable to retrieve CVE details. Please check the CVE ID and try again.</p>`;
+                resultDiv.innerHTML = <p class="text-danger">Error: Unable to retrieve CVE details. Please check the CVE ID and try again.</p>;
             }
         } catch (error) {
-            resultDiv.innerHTML = `<p class="text-danger">Error: ${error.message}</p>`;
+            resultDiv.innerHTML = <p class="text-danger">Error: ${error.message}</p>;
         }
     });
 });
